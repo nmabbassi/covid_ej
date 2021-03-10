@@ -27,6 +27,5 @@ new_covid <- covid_data %>%
                      `covid_cases_percap`, `covid_deaths_percap`)
   
   covid_data %>%
-         rename(`census` = `geoid`,
-                )
+         rename(`census_tract` = `geoid`)
 
