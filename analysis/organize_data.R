@@ -63,5 +63,23 @@ merge_data <- merge(new_ces, new_covid, by="census_tract", all.x=TRUE, all.y=FAL
 #save full merge data in output directory
 save(merge_data, file="output/merge_data.RData")
 
+#filter by LA for preliminary comparisons
+merge_LA <- filter(merge_data, `county` %in%
+                            c("Los Angeles"))
+#test ggplot
+ggplot(merge_LA, aes(x=pop_char_score, y=cv_cases))+
+  theme_bw()+
+  labs(x="Population Characteristics Score",
+       y="Covid Cases",
+       title="Covid Cases by CES Score",
+       caption="CES and Social Explorer Data")
+
+ggplot(merge_LA, aes(x=ces_score, y=cv_cases))+
+  theme_gray()+ 
+  theme(axis.title=element_text(size=12))+
+  theme(legend.position="bottom", legend.background=element_rect
+        (fill="gray95", linetype=1, size=.15, color=1))
+
+
 
 
